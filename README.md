@@ -34,7 +34,7 @@ require(ipfinder)
 
 conf <- Ipfinder() # emty token == free  or conf <- Ipfinder(nil) 
 
--- lookup your IP address information
+# lookup your IP address information
 auth <- Authentication()
 
 auth
