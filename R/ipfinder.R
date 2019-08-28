@@ -1,23 +1,3 @@
-#' The official Lua client library for the IPFinder.io
-#'
-#' IP address details (city, region, country, postal code, latitude and more ..).
-#' ASN details (Organization name, registry,domain,comany_type, and more .. ).
-#' Firewall by supported formats details (apache_allow, nginx_deny, CIDR , and more ..).
-#' IP Address Ranges by the Organization name details (list_asn, list_prefixes , and more ..).
-#' Get Domain IP (asn, organization,country_code ....).
-#' Get Domain IP history (total_ip, list_ip,organization,asn ....).
-#' Get list Domain By ASN, Country,Ranges (select_by , total_domain , list_domain ....). 
-#'
-#' @md
-#' @name ipfinder
-#' @docType package
-#' @author Mohamed Ben rebia <mohamed@ipfinder.io>
-#' @import httr
-#' @import jsonlite 
-
-require(httr)
-require(jsonlite)
-
 #' DEFAULT BASE URL
 DEFAULT_BASE_URL <- "https://api.ipfinder.io/v1/"
 
@@ -47,6 +27,8 @@ DOMAIN_BY_PATH <- "domainby/"
 
 
 #' The Ipfinder API class and Constructor
+#' @export Ipfinder
+#' @exportClass Ipfinder
 Ipfinder <- setClass(
 
 
@@ -82,7 +64,7 @@ setGeneric(name="Call",
 #' @md
 #' @param theObject ipfinder class
 #' @param path      specific path of asn, IP address, ranges, Firewall,Token status
-#' @param format    available format `json` `jsonp` `php` `xml` and firewall formats 
+#' @param format    available format `json` `jsonp` `php` `xml` and firewall formats
 #' @export
 setMethod(f="Call",
           signature="Ipfinder",
@@ -123,6 +105,7 @@ setGeneric(name="Authentication",
 #' @md
 #' @param theObject ipfinder class
 #' @references <https://ipinfo.io/developers#full-ip-details>
+#' @return your ip data
 #' @export
 setMethod(f="Authentication",
           signature="Ipfinder",
@@ -145,6 +128,7 @@ setGeneric(name="getAddressInfo",
 #' @param theObject ipfinder class
 #' @param path      IP address.
 #' @references <https://ipfinder.io/docs/#response-objects-details>
+#' @return ip data
 #' @export
 setMethod(f="getAddressInfo",
           signature="Ipfinder",
@@ -167,6 +151,7 @@ setGeneric(name="getAsn",
 #' @param theObject ipfinder class
 #' @param path      AS number.
 #' @references <https://ipfinder.io/docs/#response-object>
+#' @return asn data
 #' @export
 setMethod(f="getAsn",
           signature="Ipfinder",
@@ -188,6 +173,7 @@ setGeneric(name="getStatus",
 #' @md
 #' @param theObject ipfinder class
 #' @references <https://ipfinder.io/docs/#response-objects-details-2>
+#' @return status data
 #' @export
 setMethod(f="getStatus",
           signature="Ipfinder",
@@ -210,6 +196,7 @@ setGeneric(name="getRanges",
 #' @param theObject ipfinder class
 #' @param path      Organization name.
 #' @references <https://ipfinder.io/docs/#response-objects-details-3>
+#' @return rang data
 #' @export
 setMethod(f="getRanges",
           signature="Ipfinder",
@@ -234,6 +221,7 @@ setGeneric(name="getFirewall",
 #' @param path      AS number, alpha-2 country only.
 #' @param formats   list formats supported
 #' @references <https://ipfinder.io/docs/#response-details>
+#' @return Firewall data
 #' @export
 setMethod(f="getFirewall",
           signature="Ipfinder",
@@ -256,7 +244,9 @@ setGeneric(name="getDomain",
 #' @param theObject ipfinder class
 #' @param path      The API supports passing in a single website name domain name
 #' @references <https://ipfinder.io/docs/#domain-ip-objects-details>
+#' @return Domain IP data
 #' @export
+
 setMethod(f="getDomain",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -278,6 +268,7 @@ setGeneric(name="getDomainHistory",
 #' @param theObject ipfinder class
 #' @param path      The API supports passing in a single website name domain name
 #' @references <https://ipfinder.io/docs/#domain-ip-history-objects-details>
+#' @return Domain History data
 #' @export
 setMethod(f="getDomainHistory",
           signature="Ipfinder",
@@ -300,6 +291,7 @@ setGeneric(name="getDomainBy",
 #' @param theObject ipfinder class
 #' @param path      The API supports passing in a single ASN,Country,Ranges
 #' @references <https://ipfinder.io/docs/#domain-by-asn-objects-details>
+#' @return list Domain data
 #' @export
 setMethod(f="getDomainBy",
           signature="Ipfinder",
