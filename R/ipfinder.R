@@ -1,46 +1,52 @@
-# Hello, world!
-#
-# This is an example function named 'hello'
-# which prints 'Hello, world!'.
-#
-# You can learn more about package authoring with RStudio at:
-#
-#   http://r-pkgs.had.co.nz/
-#
-# Some useful keyboard shortcuts for package authoring:
-#
-#   Install Package:           'Ctrl + Shift + B'
-#   Check Package:             'Ctrl + Shift + E'
-#   Test Package:              'Ctrl + Shift + T'
+#' The official Lua client library for the IPFinder.io
+#'
+#' IP address details (city, region, country, postal code, latitude and more ..).
+#' ASN details (Organization name, registry,domain,comany_type, and more .. ).
+# Firewall by supported formats details (apache_allow, nginx_deny, CIDR , and more ..).
+# IP Address Ranges by the Organization name details (list_asn, list_prefixes , and more ..).
+# Get Domain IP (asn, organization,country_code ....).
+# Get Domain IP history (total_ip, list_ip,organization,asn ....).
+# Get list Domain By ASN, Country,Ranges (select_by , total_domain , list_domain ....). 
+#'
+#' @md
+#' @name ipfinder
+#' @docType package
+#' @author Mohamed Ben rebia <mohamed@ipfinder.io>
+#' @import httr
+#' @import jsonlite 
+
 require(httr)
 require(jsonlite)
 
+#' DEFAULT BASE URL
 DEFAULT_BASE_URL <- "https://api.ipfinder.io/v1/"
 
-
+#' The free token limited to 4,000 requests a day
 DEFAULT_API_TOKEN <- "free"
 
-
+#' DEFAULT FORMAT
 FORMAT <- "json"
 
-
+#' service status path
 STATUS_PATH <- "info"
 
-
+#' IP Address Ranges path
 RANGES_PATH <- "ranges/"
 
-
+#' Firewall path
 FIREWALL_PATH <- "firewall/"
 
-
+#' Get Domain IP path
 DOMAIN_PATH <- "domain/"
 
-
+#' Get Domain IP history path
 DOMAIN_H_PATH <- "domainhistory/"
 
-
+#' Domain By ASN, Country,Ranges path
 DOMAIN_BY_PATH <- "domainby/"
 
+
+#' The Ipfinder API class and Constructor
 Ipfinder <- setClass(
 
 
@@ -71,6 +77,13 @@ setGeneric(name="Call",
            }
 )
 
+#' Call to server
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      specific path of asn, IP address, ranges, Firewall,Token status
+#' @param format    available format `json` `jsonp` `php` `xml` and firewall formats 
+#' @export
 setMethod(f="Call",
           signature="Ipfinder",
           definition=function(theObject, path = NULL, format = NULL)
@@ -105,6 +118,12 @@ setGeneric(name="Authentication",
            }
 )
 
+#' Get details for an Your IP address.
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @references <https://ipinfo.io/developers#full-ip-details>
+#' @export
 setMethod(f="Authentication",
           signature="Ipfinder",
           definition=function(theObject)
@@ -120,6 +139,13 @@ setGeneric(name="getAddressInfo",
            }
 )
 
+#' Get details for an IP address.
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      IP address.
+#' @references <https://ipfinder.io/docs/#response-objects-details>
+#' @export
 setMethod(f="getAddressInfo",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -135,6 +161,13 @@ setGeneric(name="getAsn",
            }
 )
 
+#' Get details for an AS number.
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      AS number.
+#' @references <https://ipfinder.io/docs/#response-object>
+#' @export
 setMethod(f="getAsn",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -150,6 +183,12 @@ setGeneric(name="getStatus",
            }
 )
 
+#' Get details for an API Token .
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @references <https://ipfinder.io/docs/#response-objects-details-2>
+#' @export
 setMethod(f="getStatus",
           signature="Ipfinder",
           definition=function(theObject)
@@ -165,6 +204,13 @@ setGeneric(name="getRanges",
            }
 )
 
+#' Get details for an Organization name.
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      Organization name.
+#' @references <https://ipfinder.io/docs/#response-objects-details-3>
+#' @export
 setMethod(f="getRanges",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -181,6 +227,14 @@ setGeneric(name="getFirewall",
            }
 )
 
+#' Get Firewall data
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      AS number, alpha-2 country only.
+#' @param formats   list formats supported
+#' @references <https://ipfinder.io/docs/#response-details>
+#' @export
 setMethod(f="getFirewall",
           signature="Ipfinder",
           definition=function(theObject,path,formats)
@@ -196,6 +250,13 @@ setGeneric(name="getDomain",
            }
 )
 
+#' Get Domain IP
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      The API supports passing in a single website name domain name
+#' @references <https://ipfinder.io/docs/#domain-ip-objects-details>
+#' @export
 setMethod(f="getDomain",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -211,6 +272,13 @@ setGeneric(name="getDomainHistory",
            }
 )
 
+#' Get Domain History IP
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      The API supports passing in a single website name domain name
+#' @references <https://ipfinder.io/docs/#domain-ip-history-objects-details>
+#' @export
 setMethod(f="getDomainHistory",
           signature="Ipfinder",
           definition=function(theObject,path)
@@ -226,6 +294,13 @@ setGeneric(name="getDomainBy",
            }
 )
 
+#' Get list Domain By ASN, Country,Ranges
+#'
+#' @md
+#' @param theObject ipfinder class
+#' @param path      The API supports passing in a single ASN,Country,Ranges
+#' @references <https://ipfinder.io/docs/#domain-by-asn-objects-details>
+#' @export
 setMethod(f="getDomainBy",
           signature="Ipfinder",
           definition=function(theObject,path)
