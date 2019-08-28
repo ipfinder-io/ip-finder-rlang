@@ -13,5 +13,7 @@ Description: The official Lua client library for the IPFinder.io get details for
     Get Domain IP history (total_ip, list_ip,organization,asn ....).
     Get list Domain By ASN, Country,Ranges (select_by , total_domain , list_domain ....).     
 License: Apache-2.0
+URL: https://ipfinder.io/
+BugReports: https://github.com/ipfinder-io/ip-finder-rlang/issues
 Encoding: UTF-8
 LazyData: true
