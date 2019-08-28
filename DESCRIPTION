@@ -17,3 +17,6 @@ URL: https://ipfinder.io/
 BugReports: https://github.com/ipfinder-io/ip-finder-rlang/issues
 Encoding: UTF-8
 LazyData: true
+Imports:
+    httr,
+    jsonlite
