@@ -35,7 +35,7 @@ require(ipfinder)
 conf <- Ipfinder() # emty token == free  or conf <- Ipfinder(nil) 
 
 # lookup your IP address information
-auth <- Authentication()
+auth <- Authentication(conf)
 
 auth
 # print your ip
@@ -50,7 +50,7 @@ require(ipfinder)
 accconf Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
 # lookup your IP address information
-auth <- Authentication()
+auth <- Authentication(conf)
 
 auth
 # print your ip
@@ -66,7 +66,7 @@ require(ipfinder)
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
 # GET Get details for 1.0.0.0
-ip <- getAddressInfo("1.0.0.0")
+ip <- getAddressInfo(conf,"1.0.0.0")
 # print data
 ip
 ```
@@ -79,7 +79,7 @@ require(ipfinder)
 
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
-asn <- getAsn("AS1")
+asn <- getAsn(conf,"AS1")
 # print data
 asn
 ```
@@ -94,7 +94,7 @@ require(ipfinder)
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
 # lookup Asn Firewall information
-fire <- getFirewall("AS1", 'nginx_deny')
+fire <- getFirewall(conf,"AS1", 'nginx_deny')
 
 fire
 ```
@@ -108,7 +108,7 @@ require(ipfinder)
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
 # lookup Organization information
-range <- getRanges("Telecom Algeria")
+range <- getRanges(conf,"Telecom Algeria")
 
 range
 ```
@@ -121,7 +121,7 @@ require(ipfinder)
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
 # lookup IP TOKEN information
-status <- getStatus()
+status <- getStatus(conf)
 
 status
 ```
@@ -134,7 +134,7 @@ require(ipfinder)
 
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 
-domain <- getDomain("google.fr")
+domain <- getDomain(conf,"google.fr")
 
 domain
 ```
@@ -146,7 +146,7 @@ require(ipfinder)
 
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 # domain name IP history
-domain <- getDomainHistory("google.fr")
+domain <- getDomainHistory(conf,"google.fr")
 
 domain
 ```
@@ -160,7 +160,7 @@ require(ipfinder)
 conf <- Ipfinder(token="YOUR_TOKEN_GOES_HERE")
 # list live domain by country DZ,US,TN,FR,MA
 
-by <- getDomainBy("FR")
+by <- getDomainBy(conf,"FR")
 
 by
 ```
